@@ -85,6 +85,7 @@ function Tables() {
       happy:0,
       sad:0,
       angry:0,
+      neutral:0,
       presence:0,
       total:0,
     };
@@ -109,7 +110,7 @@ function Tables() {
      
 
     });
-    myfirstjson.absencepercentage=(totalAbsence/totalAbsence).toFixed(2);
+    myfirstjson.absencepercentage=(totalAbsence/totalStudents).toFixed(2);
     myfirstjson.absencenumber=totalAbsence;
    
 
@@ -129,6 +130,10 @@ function Tables() {
     date: serverTimestamp(),
     absencenumber: myfirstjson.absencenumber,
     absencepercentage: myfirstjson.absencepercentage,
+    happy:mysecondjson.happy,
+    sad:mysecondjson.sad,
+    angry:mysecondjson.angry,
+    neutral:mysecondjson.neutral,
   });
 
 
@@ -147,6 +152,7 @@ function Tables() {
     const response=await axios.get("http://127.0.0.1:5000/").catch(e => setLoading(false));
 
     const data=response.data;
+    console.log(data);
     //const data=await response.json();
 
  

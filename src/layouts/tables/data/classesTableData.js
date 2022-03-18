@@ -24,6 +24,7 @@ import Chart from "react-apexcharts";
 // Images
 
 import imgsobject from "./imagesobject";
+import ensiaslogo from "../../../assets/images/ensiaslogo.png"
 
 
 
@@ -66,20 +67,22 @@ export default function data(data) {
   
 
   let myArray=[];
+  console.log("displaying");
+  console.log(data);
   data.map((yow)=> 
   myArray.push( {
         
-    author: <Author image={imgsobject[yow.name].img} name={yow.name} email={yow.email} />,
-    function: <Job title="" description={yow.id} />,
+    author: <Author image={ensiaslogo} name={yow.classnumber} email={""}  />,
+    function: <Job title="" description={new Date(yow.date.seconds * 1000).toLocaleDateString("en-US")} />,
     status: (
       <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-        {yow.absence}
+        {parseFloat(yow.absencepercentage*100).toFixed(2)+"%"}
       </MDTypography>
     ),
     employed: (
       <Chart
               options={myop.options}
-             series={[yow.emotion.happy, yow.emotion.sad, yow.emotion.neutral, yow.emotion.angry]}
+             series={[yow.neutral, yow.happy, yow.sad, yow.angry]}
         
               type="donut"
               width={300} 
@@ -87,10 +90,11 @@ export default function data(data) {
             />
     ),
     action: (
-      <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
-        Edit
-      </MDTypography>
-    ),
+        <MDTypography component="a" href="#" variant="caption" color="text" fontWeight="medium">
+          Edit
+        </MDTypography>
+      ),
+
   })
   );
     
@@ -98,9 +102,9 @@ export default function data(data) {
 
   return {
     thecolumns: [
-      { Header: "Student", accessor: "author", width: "45%", align: "left" },
-      { Header: "ID Student", accessor: "function", align: "left" },
-      { Header: "Absence", accessor: "status", align: "center" },
+      { Header: "Class Number", accessor: "author", width: "45%", align: "left" },
+      { Header: "Date", accessor: "function", align: "left" },
+      { Header: "Presence Percentage", accessor: "status", align: "center" },
       { Header: "Emotion Statistics", accessor: "employed", align: "center" },
     
     ],

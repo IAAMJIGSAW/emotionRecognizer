@@ -93,7 +93,7 @@ const routes = [
     route: "/notifications",
     component: <Notifications />,
   },
-  */
+  
   {
     type: "collapse",
     name: "Profile",
@@ -102,6 +102,7 @@ const routes = [
     route: "/profile",
     component: <Profile />,
   },
+  */
   /*
   {
     type: "collapse",
